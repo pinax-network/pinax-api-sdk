@@ -14,7 +14,7 @@ import type { paths } from './openapi.d.ts';
 export type * from './openapi.d.ts';
 
 // Constants
-export const DEFAULT_BASE_URL = 'https://token-api.thegraph.com';
+export const DEFAULT_BASE_URL = 'https://api.pinax.network';
 
 /**
  * Typed error class for API-level errors returned by the Token API.

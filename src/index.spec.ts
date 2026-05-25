@@ -228,7 +228,7 @@ describe('TokenAPI', () => {
 
 describe('Constants', () => {
   it('should export DEFAULT_BASE_URL', () => {
-    expect(DEFAULT_BASE_URL).toBe('https://token-api.thegraph.com');
+    expect(DEFAULT_BASE_URL).toBe('https://api.pinax.network');
   });
 
   describe('EVMChains', () => {
