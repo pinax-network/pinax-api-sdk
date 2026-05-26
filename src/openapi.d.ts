@@ -873,7 +873,7 @@ export interface paths {
          *
          *     Filters compose additively — pass `coin`, `dex`, `base_token`, and/or `quote_token` to narrow the scope. A mismatched combination (e.g. `coin=cash:TSLA&dex=xyz`) returns empty. Omit all for a full listing sorted by 24h volume.
          *
-         *     `base_token` and `quote_token` are spot-discovery filters: `?base_token=HYPE` returns every spot pair where HYPE sits on the base side (HYPE/USDC, HYPE/USDT0, …). Use the `coin` from the result as the identifier on the rest of the `/v1/hyperliquid/*` endpoints.
+         *     `base_token` and `quote_token` are discovery filters across spot and perp markets: `?base_token=HYPE` returns every market with HYPE on the base side. Use the `coin` from the result as the identifier on the rest of the `/v1/hyperliquid/*` endpoints.
          */
         get: operations["getV1HyperliquidMarkets"];
         put?: never;
@@ -1378,7 +1378,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/SKILLS.md": {
+    "/SKILL.md": {
         parameters: {
             query?: never;
             header?: never;
@@ -1386,8 +1386,8 @@ export interface paths {
             cookie?: never;
         };
         /**
-         * Agent Skills Reference
-         * @description Returns the public Markdown reference for AI agents integrating with Token API.
+         * Pinax API Skill
+         * @description Returns the public Markdown reference for AI agents integrating with Pinax API.
          */
         get: operations["getSkillsMarkdown"];
         put?: never;
@@ -1407,9 +1407,29 @@ export interface paths {
         };
         /**
          * LLM Documentation Index
-         * @description Returns the public llms.txt documentation index for AI tools discovering Token API.
+         * @description Returns the public llms.txt documentation index for AI tools discovering Pinax API.
          */
         get: operations["getLlmsText"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/.well-known/x402": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * x402 Discovery
+         * @description Returns the public x402 discovery document. Payment enforcement, verification, settlement, and metering are handled by the proxy layer.
+         */
+        get: operations["getX402Discovery"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1427,7 +1447,7 @@ export interface paths {
         };
         /**
          * OpenAPI Specification
-         * @description Returns the public OpenAPI specification for Token API.
+         * @description Returns the public OpenAPI specification for Pinax API.
          */
         get: operations["getOpenapiSpec"];
         put?: never;
@@ -7948,9 +7968,9 @@ export interface operations {
                 coin?: string | string[];
                 /** @description DEX identifier. `perps` for core perps, `spot` for `@N` spot pairs, or a builder DEX name (`xyz`, `cash`, …). Call `/v1/hyperliquid/dexes` for the live set.<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 dex?: string | string[];
-                /** @description Spot token symbol (e.g. `HYPE`, `USDC`). Use to discover all spot pairs with this token on a given side via `/v1/hyperliquid/markets?base_token=...` or `?quote_token=...`.<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
+                /** @description Token symbol (e.g. `HYPE`, `USDC`, `BTC`). Use to discover markets with this token on a given side via `/v1/hyperliquid/markets?base_token=...` or `?quote_token=...`.<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 base_token?: string | string[];
-                /** @description Spot token symbol (e.g. `HYPE`, `USDC`). Use to discover all spot pairs with this token on a given side via `/v1/hyperliquid/markets?base_token=...` or `?quote_token=...`.<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
+                /** @description Token symbol (e.g. `HYPE`, `USDC`, `BTC`). Use to discover markets with this token on a given side via `/v1/hyperliquid/markets?base_token=...` or `?quote_token=...`.<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 quote_token?: string | string[];
                 /** @description Number of items* returned in a single request.<br>*Plan restricted. */
                 limit?: number;
@@ -11003,6 +11023,26 @@ export interface operations {
                 };
                 content: {
                     "text/markdown; charset=UTF-8": string;
+                };
+            };
+        };
+    };
+    getX402Discovery: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json; charset=UTF-8": Record<string, never>;
                 };
             };
         };
