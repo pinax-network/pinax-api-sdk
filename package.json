@@ -40,7 +40,7 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pinax-network/token-api-sdk.git"
+    "url": "git+https://github.com/pinax-network/pinax-api-sdk.git"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.6",
