@@ -1,7 +1,7 @@
 {
-  "name": "@pinax/token-api",
-  "version": "0.2.12",
-  "description": "Pinax Token API - Power your apps & AI agents with real-time token data",
+  "name": "@pinax/api",
+  "version": "0.3.0",
+  "description": "Pinax API - Power your apps & AI agents with real-time blockchain data",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -29,10 +29,12 @@
   },
   "keywords": [
     "pinax",
-    "token-api",
+    "api",
     "blockchain",
     "evm",
     "ethereum",
+    "solana",
+    "tron",
     "sdk"
   ],
   "license": "Apache-2.0",

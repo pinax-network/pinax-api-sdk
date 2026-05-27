@@ -3,15 +3,15 @@
  *
  * This example retrieves the 100 most recent swap transactions on Solana.
  *
- * @see https://thegraph.com/docs/en/token-api/quick-start/
+ * @see https://docs.pinax.network
  */
 
-import { TokenAPI } from '@pinax/token-api';
+import { PinaxAPI } from '@pinax/api';
 
 async function main() {
   // Initialize the client with your bearer token
-  const client = new TokenAPI({
-    apiToken: process.env.TOKENAPI_KEY,
+  const client = new PinaxAPI({
+    apiToken: process.env.PINAX_API_KEY,
   });
 
   console.log('Fetching 100 most recent swaps on Solana...\n');

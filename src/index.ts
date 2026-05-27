@@ -1,9 +1,9 @@
 /**
- * @pinax/token-api - Pinax Token API
+ * @pinax/api - Pinax API
  *
- * Power your apps & AI agents with real-time token data.
+ * Power your apps & AI agents with real-time blockchain data.
  *
- * @see https://thegraph.com/docs/en/token-api/quick-start/
+ * @see https://docs.pinax.network
  * @license Apache-2.0
  */
 
@@ -17,7 +17,7 @@ export type * from './openapi.d.ts';
 export const DEFAULT_BASE_URL = 'https://api.pinax.network';
 
 /**
- * Typed error class for API-level errors returned by the Token API.
+ * Typed error class for API-level errors returned by the Pinax API.
  *
  * Network errors (DNS, socket, timeout) propagate as native `TypeError`/`Error`
  * and do not go through `handleResponse`, so they are not wrapped in `APIError`.
@@ -47,27 +47,27 @@ export class APIError extends Error {
 }
 
 // Response types inferred from operations
-export type EvmTransfersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['evm']['tokens']['getTransfers']>>>;
-export type EvmSwapsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['evm']['dexs']['getSwaps']>>>;
-export type EvmTokensResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['evm']['tokens']['getTokenMetadata']>>>;
-export type EvmBalancesResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['evm']['tokens']['getBalances']>>>;
-export type EvmHoldersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['evm']['tokens']['getHolders']>>>;
-export type EvmPoolsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['evm']['dexs']['getPools']>>>;
-export type SvmTransfersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['svm']['tokens']['getTransfers']>>>;
-export type SvmSwapsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['svm']['dexs']['getSwaps']>>>;
-export type SvmTokensResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['svm']['tokens']['getTokenMetadata']>>>;
-export type SvmNativeTokensResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['svm']['tokens']['getNativeTokenMetadata']>>>;
-export type SvmBalancesResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['svm']['tokens']['getBalances']>>>;
-export type SvmHoldersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['svm']['tokens']['getHolders']>>>;
-export type SvmPoolsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['svm']['dexs']['getPools']>>>;
-export type TvmTransfersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['tvm']['tokens']['getTransfers']>>>;
-export type TvmSwapsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['tvm']['dexs']['getSwaps']>>>;
-export type TvmTokensResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['tvm']['tokens']['getTokenMetadata']>>>;
-export type TvmPoolsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['tvm']['dexs']['getPools']>>>;
-export type PolymarketMarketsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['polymarket']['getMarkets']>>>;
-export type PolymarketUsersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['polymarket']['getUsers']>>>;
-export type HyperliquidMarketsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['hyperliquid']['getMarkets']>>>;
-export type HyperliquidUsersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof TokenAPI>['hyperliquid']['getUsers']>>>;
+export type EvmTransfersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['evm']['tokens']['getTransfers']>>>;
+export type EvmSwapsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['evm']['dexs']['getSwaps']>>>;
+export type EvmTokensResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['evm']['tokens']['getTokenMetadata']>>>;
+export type EvmBalancesResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['evm']['tokens']['getBalances']>>>;
+export type EvmHoldersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['evm']['tokens']['getHolders']>>>;
+export type EvmPoolsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['evm']['dexs']['getPools']>>>;
+export type SvmTransfersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['svm']['tokens']['getTransfers']>>>;
+export type SvmSwapsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['svm']['dexs']['getSwaps']>>>;
+export type SvmTokensResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['svm']['tokens']['getTokenMetadata']>>>;
+export type SvmNativeTokensResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['svm']['tokens']['getNativeTokenMetadata']>>>;
+export type SvmBalancesResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['svm']['tokens']['getBalances']>>>;
+export type SvmHoldersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['svm']['tokens']['getHolders']>>>;
+export type SvmPoolsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['svm']['dexs']['getPools']>>>;
+export type TvmTransfersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['tvm']['tokens']['getTransfers']>>>;
+export type TvmSwapsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['tvm']['dexs']['getSwaps']>>>;
+export type TvmTokensResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['tvm']['tokens']['getTokenMetadata']>>>;
+export type TvmPoolsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['tvm']['dexs']['getPools']>>>;
+export type PolymarketMarketsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['polymarket']['getMarkets']>>>;
+export type PolymarketUsersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['polymarket']['getUsers']>>>;
+export type HyperliquidMarketsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['hyperliquid']['getMarkets']>>>;
+export type HyperliquidUsersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['hyperliquid']['getUsers']>>>;
 
 type GetQuery<P extends keyof paths> = paths[P] extends {
   get: {
@@ -140,9 +140,9 @@ export type DexProtocol = EvmDexProtocol;
  *
  * @example
  * ```typescript
- * import { TokenAPI, EVMChains } from "@pinax/token-api";
+ * import { PinaxAPI, EVMChains } from "@pinax/api";
  *
- * const client = new TokenAPI();
+ * const client = new PinaxAPI();
  * const transfers = await client.evm.tokens.getTransfers({
  *   network: EVMChains.Ethereum,
  *   limit: 10,
@@ -174,9 +174,9 @@ export const EVMChains = {
  *
  * @example
  * ```typescript
- * import { TokenAPI, SVMChains } from "@pinax/token-api";
+ * import { PinaxAPI, SVMChains } from "@pinax/api";
  *
- * const client = new TokenAPI();
+ * const client = new PinaxAPI();
  * const transfers = await client.svm.tokens.getTransfers({
  *   network: SVMChains.Solana,
  *   limit: 10,
@@ -194,9 +194,9 @@ export const SVMChains = {
  *
  * @example
  * ```typescript
- * import { TokenAPI, TVMChains } from "@pinax/token-api";
+ * import { PinaxAPI, TVMChains } from "@pinax/api";
  *
- * const client = new TokenAPI();
+ * const client = new PinaxAPI();
  * const transfers = await client.tvm.tokens.getTransfers({
  *   network: TVMChains.Tron,
  *   limit: 10,
@@ -243,18 +243,18 @@ function createAuthMiddleware(options: PinaxClientOptions): Middleware {
       if (apiToken) {
         request.headers.set('Authorization', `Bearer ${apiToken}`);
       }
-      request.headers.set('User-Agent', '@pinax/token-api');
+      request.headers.set('User-Agent', '@pinax/api');
       return request;
     },
   };
 }
 
 /**
- * Create a Pinax Token API client for accessing the Token API
+ * Create a Pinax API client
  *
  * @example
  * ```typescript
- * import { createAPIClient } from "@pinax/token-api";
+ * import { createAPIClient } from "@pinax/api";
  *
  * const client = createAPIClient({
  *   apiToken: "your-api-token-jwt"
@@ -976,7 +976,7 @@ class SvmDexs {
  *
  * @remarks
  * This class is a placeholder for future NFT functionality on SVM networks (Solana).
- * Methods will be added when the Token API adds support for Solana NFT operations.
+ * Methods will be added when the Pinax API adds support for Solana NFT operations.
  */
 class SvmNfts {
   constructor(private client: ReturnType<typeof createAPIClient>) { }
@@ -1413,7 +1413,7 @@ class TvmDexs {
  *
  * @remarks
  * This class is a placeholder for future NFT functionality on TVM networks (Tron).
- * Methods will be added when the Token API adds support for Tron NFT operations.
+ * Methods will be added when the Pinax API adds support for Tron NFT operations.
  */
 class TvmNfts {
   constructor(private client: ReturnType<typeof createAPIClient>) { }
@@ -1435,13 +1435,13 @@ class TvmApi {
 }
 
 /**
- * High-level wrapper for common Token API operations
+ * High-level wrapper for common Pinax API operations
  *
  * @example
  * ```typescript
- * import { TokenAPI } from "@pinax/token-api";
+ * import { PinaxAPI } from "@pinax/api";
  *
- * const client = new TokenAPI({ apiToken: "YOUR_API_KEY_HERE" });
+ * const client = new PinaxAPI({ apiToken: "YOUR_API_KEY_HERE" });
  *
  * // Get EVM transfers
  * const transfers = await client.evm.tokens.getTransfers({
@@ -1456,7 +1456,7 @@ class TvmApi {
  * });
  * ```
  */
-export class TokenAPI {
+export class PinaxAPI {
   private client: ReturnType<typeof createAPIClient>;
 
   /**
@@ -1535,9 +1535,14 @@ export class TokenAPI {
 }
 
 // Default export
-export default TokenAPI;
+export default PinaxAPI;
 
 /**
- * @deprecated Use `TokenAPI` instead. `TokenClient` is an alias kept for backward compatibility.
+ * @deprecated Use `PinaxAPI` instead. `TokenAPI` is an alias kept for backward compatibility.
  */
-export const TokenClient = TokenAPI;
+export const TokenAPI = PinaxAPI;
+
+/**
+ * @deprecated Use `PinaxAPI` instead. `TokenClient` is an alias kept for backward compatibility.
+ */
+export const TokenClient = PinaxAPI;

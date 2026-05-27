@@ -10,7 +10,7 @@
     "skipLibCheck": true,
     "noEmit": true,
     "paths": {
-      "@pinax/token-api": ["../dist"]
+      "@pinax/api": ["../dist"]
     }
   },
   "include": ["./*.ts"]

@@ -1,6 +1,6 @@
 # Token API Examples
 
-This folder contains TypeScript examples demonstrating how to use the `@pinax/token-api` to access blockchain token data.
+This folder contains TypeScript examples demonstrating how to use the `@pinax/api` to access blockchain token data.
 
 ## Prerequisites
 
