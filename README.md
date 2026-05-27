@@ -132,8 +132,8 @@ for (const balance of balances.data ?? []) {
 
 ```bash
 # Clone the repository
-git clone https://github.com/pinax-network/token-api-sdk.git
-cd token-api-sdk
+git clone https://github.com/pinax-network/pinax-api-sdk.git
+cd pinax-api-sdk
 
 # Install dependencies
 bun install
