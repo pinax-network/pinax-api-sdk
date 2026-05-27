@@ -3547,7 +3547,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by transaction hash<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 transaction_id?: string | string[];
                 /** @description Filter by contract address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
@@ -3621,7 +3621,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -3715,7 +3715,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 address: string | string[];
                 /** @description Filter by contract address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
@@ -3767,7 +3767,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -3861,7 +3861,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by contract address */
                 contract: string;
                 /** @description Number of items* returned in a single request.<br>*Plan restricted. */
@@ -3910,7 +3910,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -4004,7 +4004,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by contract address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 contract: string | string[];
             };
@@ -4043,7 +4043,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                             icon?: {
                                 web3icon: string;
                             };
@@ -4140,7 +4140,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by address */
                 address: string;
                 /** @description Filter by contract address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
@@ -4195,7 +4195,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -4289,7 +4289,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by transaction hash<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 transaction_id?: string | string[];
                 /** @description Filter by address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
@@ -4355,7 +4355,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -4449,7 +4449,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 address: string | string[];
             };
@@ -4487,7 +4487,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -4581,7 +4581,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Number of items* returned in a single request.<br>*Plan restricted. */
                 limit?: number;
                 /** @description Page number to fetch.<br>Empty `data` array signifies end of results. */
@@ -4622,7 +4622,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -4716,7 +4716,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
             };
             header?: never;
             path?: never;
@@ -4746,7 +4746,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                             icon?: {
                                 web3icon: string;
                             };
@@ -4843,7 +4843,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by address */
                 address: string;
                 /** @description The interval* for which to aggregate price data (hourly, 4-hours, daily or weekly).<br>*Plan restricted. */
@@ -4896,7 +4896,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -4990,7 +4990,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by transaction hash<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 transaction_id?: string | string[];
                 /** @description Filter by factory address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
@@ -5119,7 +5119,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -5213,7 +5213,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by factory address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 factory?: string | string[];
                 /** @description Filter by pool address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
@@ -5275,7 +5275,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -5369,7 +5369,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by pool address */
                 pool: string;
                 /** @description The interval* for which to aggregate price data (1-minute, 5-minutes, 10-minutes, 30-minutes, hourly, 4-hours, daily or weekly).<br>*Plan restricted. */
@@ -5415,7 +5415,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -5509,7 +5509,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Number of items* returned in a single request.<br>*Plan restricted. */
                 limit?: number;
                 /** @description Page number to fetch.<br>Empty `data` array signifies end of results. */
@@ -5550,7 +5550,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -5644,7 +5644,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by contract address */
                 contract: string;
                 /** @description Number of items* returned in a single request.<br>*Plan restricted. */
@@ -5690,7 +5690,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -5784,7 +5784,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by contract address */
                 contract: string;
                 /** @description Number of items* returned in a single request.<br>*Plan restricted. */
@@ -5835,7 +5835,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -5929,7 +5929,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by contract address */
                 contract: string;
                 /** @description Token ID<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
@@ -5990,7 +5990,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -6084,7 +6084,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 address: string | string[];
                 /** @description Filter by contract address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
@@ -6144,7 +6144,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -6238,7 +6238,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Filter by transaction hash<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
                 transaction_id?: string | string[];
                 /** @description Filter by contract address<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
@@ -6319,7 +6319,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -6413,7 +6413,7 @@ export interface operations {
         parameters: {
             query: {
                 /** @description The Graph Network ID for EVM networks https://thegraph.com/networks */
-                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                 /** @description Transfer category */
                 type?: "BURN" | "MINT" | "TRANSFER";
                 /** @description Filter by transaction hash<br>Single value or array of values* (separate multiple values with `,`)<br>*Plan restricted. */
@@ -6508,7 +6508,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;
@@ -7473,7 +7473,7 @@ export interface operations {
                              * @example mainnet
                              * @enum {string}
                              */
-                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "mainnet" | "optimism" | "polygon" | "unichain";
+                            network: "arbitrum-one" | "avalanche" | "base" | "bsc" | "hyperevm" | "mainnet" | "optimism" | "polygon" | "unichain";
                         }[];
                         statistics: {
                             elapsed?: number;

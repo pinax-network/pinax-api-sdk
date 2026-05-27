@@ -1,6 +1,6 @@
 {
   "name": "@pinax/api",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Pinax API - Power your apps & AI agents with real-time blockchain data",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "prepublishOnly": "bun run build",
-    "generate": "openapi-typescript https://api.pinax.network/openapi -o src/openapi.d.ts",
+    "generate": "openapi-typescript https://token-api.stage.pinax.network/openapi -o src/openapi.d.ts",
     "build": "bun run generate && bun build src/index.ts --outdir dist --target node && bun run build:types",
     "build:types": "tsc --emitDeclarationOnly --declaration --outDir dist && cp ./src/openapi.d.ts dist/openapi.d.ts",
     "typecheck": "tsc --noEmit",
