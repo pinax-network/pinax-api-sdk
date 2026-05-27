@@ -4,18 +4,18 @@
  * This example retrieves the top holders of the USDC token on Ethereum mainnet.
  * USDC Contract: 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48
  *
- * @see https://thegraph.com/docs/en/token-api/quick-start/
+ * @see https://docs.pinax.network
  */
 
-import { TokenAPI } from '@pinax/token-api';
+import { PinaxAPI } from '@pinax/api';
 
 // USDC Token Contract Address on Ethereum Mainnet
 const USDC_CONTRACT = '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48';
 
 async function main() {
   // Initialize the client with your bearer token
-  const client = new TokenAPI({
-    apiToken: process.env.TOKENAPI_KEY,
+  const client = new PinaxAPI({
+    apiToken: process.env.PINAX_API_KEY,
   });
 
   console.log('Fetching top USDC holders on Ethereum mainnet...\n');

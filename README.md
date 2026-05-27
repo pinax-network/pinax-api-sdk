@@ -1,20 +1,23 @@
-# Token API `@pinax/token-api`
+# Pinax API `@pinax/api`
 
-> Power your apps & AI agents with real-time token data.
+> Power your apps & AI agents with real-time blockchain data.
 
-[![npm version](https://img.shields.io/npm/v/@pinax/token-api.svg)](https://www.npmjs.com/package/@pinax/token-api)
+[![npm version](https://img.shields.io/npm/v/@pinax/api.svg)](https://www.npmjs.com/package/@pinax/api)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Overview
 
-The `@pinax/token-api` provides a type-safe TypeScript client for [The Graph's Token API](https://thegraph.com/docs/en/token-api/quick-start/). Access blockchain token information including:
+The `@pinax/api` provides a type-safe TypeScript client for the [Pinax API](https://docs.pinax.network). Access blockchain data including:
 
-- **Token Transfers** - ERC-20 and native token transfers
-- **DEX Swaps** - Uniswap and other DEX swap events
+- **Token Transfers** - ERC-20, SPL, TRC-20 and native token transfers
+- **DEX Swaps** - Uniswap, Jupiter, Raydium and other DEX swap events
 - **Token Metadata** - Symbol, name, decimals, supply
 - **Balances** - Real-time token holdings
 - **Prices** - Current USD prices and OHLCV data
 - **Liquidity Pools** - DEX pool information
+- **NFTs** - Collections, holders, items, sales, transfers
+- **Polymarket** - Markets, activity, positions, users
+- **Hyperliquid** - Markets, users, vaults, liquidations
 
 ### Supported Networks
 
@@ -29,25 +32,25 @@ The SDK provides typed chain constants for type-safe network selection:
 ### Installation
 
 ```bash
-npm install @pinax/token-api
+npm install @pinax/api
 ```
 
 ### Authentication
 
-Get your API key from [The Graph Market](https://thegraph.market).
+Get your API key from [pinax.network](https://pinax.network).
 
 ```typescript
-const client = new TokenAPI({
-  apiToken: "YOUR_API_KEY_HERE" // or set TOKENAPI_KEY in your environment
+const client = new PinaxAPI({
+  apiToken: "YOUR_API_KEY_HERE" // or set PINAX_API_KEY in your environment
 });
 ```
 
 ### Basic Usage
 
 ```typescript
-import { TokenAPI, EVMChains } from "@pinax/token-api";
+import { PinaxAPI, EVMChains } from "@pinax/api";
 
-const client = new TokenAPI({
+const client = new PinaxAPI({
   apiToken: "YOUR_API_KEY_HERE"
 });
 
@@ -144,9 +147,8 @@ bun run build
 
 ## Related Resources
 
-- [Token API Documentation](https://thegraph.com/docs/en/token-api/quick-start/)
-- [The Graph Market](https://thegraph.market) - Get your API key
-- [Token API Repository](https://github.com/pinax-network/token-api)
+- [Pinax API Documentation](https://docs.pinax.network)
+- [Pinax](https://pinax.network) - Get your API key
 
 ## License
 

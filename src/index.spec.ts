@@ -1,12 +1,12 @@
 /**
- * Token API Client Tests
+ * Pinax API Client Tests
  *
- * Unit tests for the @pinax/token-api SDK using Bun Test runner.
+ * Unit tests for the @pinax/api SDK using Bun Test runner.
  */
 
 import { describe, it, expect, beforeEach, afterEach } from 'bun:test';
 import {
-  TokenAPI,
+  PinaxAPI,
   APIError,
   createAPIClient,
   DEFAULT_BASE_URL,
@@ -35,11 +35,11 @@ describe('createAPIClient', () => {
   });
 });
 
-describe('TokenAPI', () => {
+describe('PinaxAPI', () => {
   describe('constructor', () => {
-    it('should create a TokenAPI instance with default options', () => {
-      const client = new TokenAPI();
-      expect(client).toBeInstanceOf(TokenAPI);
+    it('should create a PinaxAPI instance with default options', () => {
+      const client = new PinaxAPI();
+      expect(client).toBeInstanceOf(PinaxAPI);
       expect(client.evm).toBeDefined();
       expect(client.svm).toBeDefined();
       expect(client.tvm).toBeDefined();
@@ -47,16 +47,16 @@ describe('TokenAPI', () => {
       expect(client.hyperliquid).toBeDefined();
     });
 
-    it('should create a TokenAPI instance with custom options', () => {
-      const client = new TokenAPI({
+    it('should create a PinaxAPI instance with custom options', () => {
+      const client = new PinaxAPI({
         apiToken: 'test-token',
         baseUrl: 'https://custom.example.com',
       });
-      expect(client).toBeInstanceOf(TokenAPI);
+      expect(client).toBeInstanceOf(PinaxAPI);
     });
 
     it('should expose getClient method', () => {
-      const client = new TokenAPI();
+      const client = new PinaxAPI();
       const internalClient = client.getClient();
       expect(internalClient).toBeDefined();
       expect(typeof internalClient.GET).toBe('function');
@@ -64,10 +64,10 @@ describe('TokenAPI', () => {
   });
 
   describe('EVM API structure', () => {
-    let client: TokenAPI;
+    let client: PinaxAPI;
 
     beforeEach(() => {
-      client = new TokenAPI();
+      client = new PinaxAPI();
     });
 
     it('should expose evm.tokens API', () => {
@@ -100,10 +100,10 @@ describe('TokenAPI', () => {
   });
 
   describe('SVM API structure', () => {
-    let client: TokenAPI;
+    let client: PinaxAPI;
 
     beforeEach(() => {
-      client = new TokenAPI();
+      client = new PinaxAPI();
     });
 
     it('should expose svm.tokens API', () => {
@@ -133,10 +133,10 @@ describe('TokenAPI', () => {
   });
 
   describe('TVM API structure', () => {
-    let client: TokenAPI;
+    let client: PinaxAPI;
 
     beforeEach(() => {
-      client = new TokenAPI();
+      client = new PinaxAPI();
     });
 
     it('should expose tvm.tokens API', () => {
@@ -161,10 +161,10 @@ describe('TokenAPI', () => {
   });
 
   describe('System methods', () => {
-    let client: TokenAPI;
+    let client: PinaxAPI;
 
     beforeEach(() => {
-      client = new TokenAPI();
+      client = new PinaxAPI();
     });
 
     it('should expose getHealth method', () => {
@@ -181,10 +181,10 @@ describe('TokenAPI', () => {
   });
 
   describe('Polymarket API structure', () => {
-    let client: TokenAPI;
+    let client: PinaxAPI;
 
     beforeEach(() => {
-      client = new TokenAPI();
+      client = new PinaxAPI();
     });
 
     it('should expose polymarket API', () => {
@@ -201,10 +201,10 @@ describe('TokenAPI', () => {
   });
 
   describe('Hyperliquid API structure', () => {
-    let client: TokenAPI;
+    let client: PinaxAPI;
 
     beforeEach(() => {
-      client = new TokenAPI();
+      client = new PinaxAPI();
     });
 
     it('should expose hyperliquid API', () => {
@@ -306,7 +306,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM transfers', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getTransfers({
       network: 'mainnet',
@@ -319,7 +319,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM swaps', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.dexs.getSwaps({
       network: 'mainnet',
@@ -332,7 +332,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should include protocol filter for EVM pools', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.dexs.getPools({
       network: 'mainnet',
@@ -345,7 +345,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for SVM transfers', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getTransfers({
       network: 'solana',
@@ -358,7 +358,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for SVM native transfers', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getNativeTransfers({
       network: 'solana',
@@ -371,7 +371,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should include amm_pool filter for SVM pools', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.dexs.getPools({
       network: 'solana',
@@ -384,7 +384,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for TVM transfers', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.tvm.tokens.getTransfers({
       network: 'tron',
@@ -397,7 +397,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should include protocol filter for TVM pools', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.tvm.dexs.getPools({
       network: 'tron',
@@ -410,7 +410,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should work with EVMChains.Ethereum constant', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getTransfers({
       network: EVMChains.Ethereum,
@@ -423,7 +423,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should work with SVMChains.Solana constant', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getTransfers({
       network: SVMChains.Solana,
@@ -436,7 +436,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should work with TVMChains.Tron constant', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.tvm.tokens.getTransfers({
       network: TVMChains.Tron,
@@ -449,7 +449,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should include authorization header when API token is provided', async () => {
-    const client = new TokenAPI({ apiToken: 'my-test-token' });
+    const client = new PinaxAPI({ apiToken: 'my-test-token' });
 
     await client.evm.tokens.getTransfers({
       network: 'mainnet',
@@ -463,7 +463,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should include referrer header in all requests', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getTransfers({
       network: 'mainnet',
@@ -471,12 +471,12 @@ describe('API methods with mocked fetch', () => {
     });
 
     expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.headers.get('User-Agent')).toBe('@pinax/token-api');
+    expect(capturedRequest!.headers.get('User-Agent')).toBe('@pinax/api');
   });
 
   it('should use custom base URL when provided', async () => {
     const customUrl = 'https://custom-api.example.com';
-    const client = new TokenAPI({
+    const client = new PinaxAPI({
       apiToken: 'test-token',
       baseUrl: customUrl,
     });
@@ -491,7 +491,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call health endpoint', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.getHealth();
 
@@ -500,7 +500,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call version endpoint', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.getVersion();
 
@@ -509,7 +509,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call networks endpoint', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.getNetworks();
 
@@ -518,7 +518,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call networks endpoint with filter', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.getNetworks({ network: 'mainnet' });
 
@@ -530,7 +530,7 @@ describe('API methods with mocked fetch', () => {
   // --- EVM Tokens: uncovered methods ---
 
   it('should call the correct endpoint for EVM native transfers', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getNativeTransfers({
       network: 'mainnet',
@@ -543,7 +543,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM token metadata', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getTokenMetadata({
       network: 'mainnet',
@@ -556,7 +556,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should support array of contracts for EVM token metadata', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getTokenMetadata({
       network: 'mainnet',
@@ -568,7 +568,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM balances', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getBalances({
       network: 'mainnet',
@@ -581,7 +581,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM holders', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getHolders({
       network: 'mainnet',
@@ -594,7 +594,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM native holders', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getNativeHolders({
       network: 'mainnet',
@@ -605,7 +605,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM native balances', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getNativeBalances({
       network: 'mainnet',
@@ -617,7 +617,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM historical balances', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getHistoricalBalances({
       network: 'mainnet',
@@ -631,7 +631,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM historical native balances', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getHistoricalNativeBalances({
       network: 'mainnet',
@@ -644,7 +644,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM native token metadata', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.tokens.getNativeTokenMetadata({
       network: 'mainnet',
@@ -657,7 +657,7 @@ describe('API methods with mocked fetch', () => {
   // --- EVM DEXs: uncovered methods ---
 
   it('should call the correct endpoint for EVM dexes', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.dexs.getDexes({
       network: 'mainnet',
@@ -668,7 +668,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for EVM pool OHLC', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.dexs.getPoolOHLC({
       network: 'mainnet',
@@ -685,7 +685,7 @@ describe('API methods with mocked fetch', () => {
   // --- EVM NFTs: all methods ---
 
   it('should call the correct endpoint for NFT collections', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.nfts.getCollections({
       network: 'mainnet',
@@ -698,7 +698,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for NFT holders', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.nfts.getHolders({
       network: 'mainnet',
@@ -710,7 +710,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for NFT items', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.nfts.getItems({
       network: 'mainnet',
@@ -724,7 +724,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for NFT ownerships', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.nfts.getOwnerships({
       network: 'mainnet',
@@ -737,7 +737,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should include new params for NFT ownerships', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.nfts.getOwnerships({
       network: 'mainnet',
@@ -752,7 +752,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for NFT sales', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.nfts.getSales({
       network: 'mainnet',
@@ -764,7 +764,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for NFT transfers', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.nfts.getTransfers({
       network: 'mainnet',
@@ -776,7 +776,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should include type and address params for NFT transfers', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.evm.nfts.getTransfers({
       network: 'mainnet',
@@ -793,7 +793,7 @@ describe('API methods with mocked fetch', () => {
   // --- SVM Tokens: uncovered methods ---
 
   it('should call the correct endpoint for SVM token metadata', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getTokenMetadata({
       network: 'solana',
@@ -806,7 +806,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should support array of mints for SVM token metadata', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getTokenMetadata({
       network: 'solana',
@@ -818,7 +818,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for SVM native token metadata', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getNativeTokenMetadata({
       network: 'solana',
@@ -830,7 +830,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for SVM balances', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getBalances({
       network: 'solana',
@@ -843,7 +843,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for SVM native balances', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getNativeBalances({
       network: 'solana',
@@ -855,7 +855,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for SVM holders', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getHolders({
       network: 'solana',
@@ -868,7 +868,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for SVM native holders', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getNativeHolders({
       network: 'solana',
@@ -881,7 +881,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for SVM account owner', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.tokens.getAccountOwner({
       network: 'solana',
@@ -896,7 +896,7 @@ describe('API methods with mocked fetch', () => {
   // --- SVM DEXs: uncovered methods ---
 
   it('should call the correct endpoint for SVM swaps', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.dexs.getSwaps({
       network: 'solana',
@@ -908,7 +908,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for SVM dexes', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.dexs.getDexes({
       network: 'solana',
@@ -919,7 +919,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for SVM pool OHLC', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.svm.dexs.getPoolOHLC({
       network: 'solana',
@@ -935,7 +935,7 @@ describe('API methods with mocked fetch', () => {
   // --- TVM Tokens: uncovered methods ---
 
   it('should call the correct endpoint for TVM native transfers', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.tvm.tokens.getNativeTransfers({
       network: 'tron',
@@ -947,7 +947,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for TVM token metadata', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.tvm.tokens.getTokenMetadata({
       network: 'tron',
@@ -960,7 +960,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should support array of contracts for TVM token metadata', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.tvm.tokens.getTokenMetadata({
       network: 'tron',
@@ -972,7 +972,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for TVM native token metadata', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.tvm.tokens.getNativeTokenMetadata({
       network: 'tron',
@@ -985,7 +985,7 @@ describe('API methods with mocked fetch', () => {
   // --- TVM DEXs: uncovered methods ---
 
   it('should call the correct endpoint for TVM swaps', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.tvm.dexs.getSwaps({
       network: 'tron',
@@ -997,7 +997,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for TVM dexes', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.tvm.dexs.getDexes({
       network: 'tron',
@@ -1008,7 +1008,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for TVM pool OHLC', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.tvm.dexs.getPoolOHLC({
       network: 'tron',
@@ -1024,7 +1024,7 @@ describe('API methods with mocked fetch', () => {
   // --- Polymarket: all methods ---
 
   it('should call the correct endpoint for Polymarket markets', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.polymarket.getMarkets({
       market_slug: 'will-btc-hit-100k',
@@ -1036,7 +1036,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Polymarket market OHLC', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.polymarket.getMarketOHLC({
       token_id: '123',
@@ -1050,7 +1050,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Polymarket open interest', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.polymarket.getMarketOpenInterest({
       market_slug: 'will-btc-hit-100k',
@@ -1063,7 +1063,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Polymarket activity', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.polymarket.getMarketActivity({
       user: '0xabc',
@@ -1077,7 +1077,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Polymarket market positions', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.polymarket.getMarketPositions({
       token_id: '123',
@@ -1090,7 +1090,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Polymarket platform aggregates', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.polymarket.getPlatform({
       interval: '1d',
@@ -1102,7 +1102,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Polymarket users', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.polymarket.getUsers({
       interval: '30d',
@@ -1116,7 +1116,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Polymarket user positions', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.polymarket.getUserPositions({
       user: '0xabc',
@@ -1132,7 +1132,7 @@ describe('API methods with mocked fetch', () => {
   // --- Hyperliquid: all methods ---
 
   it('should call the correct endpoint for Hyperliquid dexes', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getDexes();
 
@@ -1141,7 +1141,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid markets', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getMarkets({
       base_token: 'HYPE',
@@ -1155,7 +1155,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid market OHLC', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getMarketOHLC({
       coin: 'BTC',
@@ -1169,7 +1169,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid market open interest', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getMarketOpenInterest({
       coin: 'BTC',
@@ -1182,7 +1182,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid market activity', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getMarketActivity({
       coin: 'BTC',
@@ -1196,7 +1196,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid liquidations', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getLiquidations({
       coin: 'BTC',
@@ -1209,7 +1209,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid liquidation OHLC', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getLiquidationOHLC({
       coin: 'BTC',
@@ -1223,7 +1223,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid users', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getUsers({
       user: '0xabc',
@@ -1237,7 +1237,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid user positions', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getUserPositions({
       user: '0xabc',
@@ -1251,7 +1251,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid user activity', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getUserActivity({
       user: '0xabc',
@@ -1265,7 +1265,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid vaults', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getVaults({
       vault: '0xvault',
@@ -1277,7 +1277,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid vault depositors', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getVaultDepositors({
       vault: '0xvault',
@@ -1289,7 +1289,7 @@ describe('API methods with mocked fetch', () => {
   });
 
   it('should call the correct endpoint for Hyperliquid platform aggregates', async () => {
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await client.hyperliquid.getPlatform({
       interval: '1d',
@@ -1329,7 +1329,7 @@ describe('Error handling', () => {
       );
     }) as typeof fetch;
 
-    const client = new TokenAPI({ apiToken: 'invalid-token' });
+    const client = new PinaxAPI({ apiToken: 'invalid-token' });
 
     try {
       await client.evm.tokens.getTransfers({ network: 'mainnet' });
@@ -1360,7 +1360,7 @@ describe('Error handling', () => {
       );
     }) as typeof fetch;
 
-    const client = new TokenAPI({ apiToken: 'invalid-token' });
+    const client = new PinaxAPI({ apiToken: 'invalid-token' });
 
     await expect(
       client.evm.tokens.getTransfers({ network: 'mainnet' }),
@@ -1377,7 +1377,7 @@ describe('Error handling', () => {
       );
     }) as typeof fetch;
 
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     await expect(
       client.evm.tokens.getTransfers({ network: 'mainnet' }),
@@ -1401,7 +1401,7 @@ describe('Error handling', () => {
       );
     }) as typeof fetch;
 
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     try {
       await client.evm.tokens.getTransfers({ network: 'mainnet' });
@@ -1430,7 +1430,7 @@ describe('Error handling', () => {
       );
     }) as typeof fetch;
 
-    const client = new TokenAPI({ apiToken: 'test-token' });
+    const client = new PinaxAPI({ apiToken: 'test-token' });
 
     try {
       await client.evm.tokens.getTransfers({ network: 'mainnet' });
