@@ -23,7 +23,7 @@ The `@pinax/api` provides a type-safe TypeScript client for the [Pinax API](http
 
 The SDK provides typed chain constants for type-safe network selection:
 
-- **EVM Chains**: Ethereum, ArbitrumOne, Unichain, Base, Optimism, Polygon, BNB Chain & Avalanche.
+- **EVM Chains**: Ethereum, ArbitrumOne, Unichain, Base, Optimism, Polygon, BNB Chain, Avalanche & HyperEVM.
 - **Solana**: Mainnet.
 
 ## Quick Start

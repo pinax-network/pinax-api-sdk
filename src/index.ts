@@ -86,7 +86,8 @@ export type EvmNetwork =
   | 'polygon'
   | 'optimism'
   | 'avalanche'
-  | 'unichain';
+  | 'unichain'
+  | 'hyperevm';
 
 export type SvmNetwork = 'solana';
 
@@ -109,7 +110,9 @@ export type SvmDexProtocol =
   | 'darklake'
   | 'dumpfun'
   | 'moonshot'
-  | 'pancakeswap';
+  | 'pancakeswap'
+  | 'spl_token_swap'
+  | 'okx_dex';
 export type SvmTokenProgramId = '11111111111111111111111111111111' | 'TokenzQdBNbLqP5VEhdkAS6EPFLC1PHnBqCXEpPxuEb' | 'TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA';
 export type SvmDexProgramId =
   | 'LanMV9sAd7wArD4vJFi2qDdfnVhFxYSUg6eADduJ3uj'
@@ -161,6 +164,8 @@ export const EVMChains = {
   Avalanche: 'avalanche',
   /** Unichain */
   Unichain: 'unichain',
+  /** HyperEVM */
+  HyperEVM: 'hyperevm',
 } as const satisfies Record<string, EvmNetwork>;
 
 /**
@@ -492,6 +497,8 @@ class EvmDexs {
     factory?: string | string[];
     pool?: string | string[];
     caller?: string | string[];
+    transaction_from?: string | string[];
+    user?: string | string[];
     sender?: string | string[];
     recipient?: string | string[];
     input_contract?: string | string[];
@@ -552,7 +559,7 @@ class EvmDexs {
   async getPoolOHLC(params: {
     network: EvmNetwork;
     pool: string;
-    interval?: '1h' | '4h' | '1d' | '1w';
+    interval?: '1m' | '5m' | '10m' | '30m' | '1h' | '4h' | '1d' | '1w';
     start_time?: string;
     end_time?: string;
     page?: number;
@@ -723,8 +730,10 @@ class SvmTokens {
     source?: string | string[];
     destination?: string | string[];
     authority?: string | string[];
+    fee_payer?: string | string[];
+    signer?: string | string[];
     mint?: string | string[];
-    program_id?: SvmTokenProgramId;
+    program_id?: SvmTokenProgramId | string | SvmTokenProgramId[];
     start_time?: string;
     end_time?: string;
     start_block?: number;
@@ -755,7 +764,7 @@ class SvmTokens {
    */
   async getTokenMetadata(params: {
     network: SvmNetwork;
-    mint: string | string[];
+    mint?: string | string[];
   }) {
     const { data, error } = await this.client.GET('/v1/svm/tokens', {
       params: { query: params },
@@ -932,7 +941,7 @@ class SvmDexs {
   async getPoolOHLC(params: {
     network: SvmNetwork;
     amm_pool: string;
-    interval?: '1h' | '4h' | '1d' | '1w';
+    interval?: '1m' | '5m' | '10m' | '30m' | '1h' | '4h' | '1d' | '1w';
     start_time?: string;
     end_time?: string;
     page?: number;
@@ -1370,6 +1379,48 @@ export class PinaxAPI {
     const { data, error } = await this.client.GET('/v1/networks', {
       params: { query: params ?? {} },
     });
+
+    return handleResponse(data, error);
+  }
+
+  // === Documentation / Discovery Methods (at root level) ===
+
+  /**
+   * Get the Markdown reference for AI agents integrating with the Pinax API (`/SKILL.md`)
+   */
+  async getSkillMarkdown() {
+    const { data, error } = await this.client.GET('/SKILL.md', {
+      parseAs: 'text',
+    });
+
+    return handleResponse(data, error);
+  }
+
+  /**
+   * Get the llms.txt documentation index for AI tools (`/llms.txt`)
+   */
+  async getLlmsTxt() {
+    const { data, error } = await this.client.GET('/llms.txt', {
+      parseAs: 'text',
+    });
+
+    return handleResponse(data, error);
+  }
+
+  /**
+   * Get the x402 discovery document (`/.well-known/x402`)
+   */
+  async getX402Discovery() {
+    const { data, error } = await this.client.GET('/.well-known/x402', {});
+
+    return handleResponse(data, error);
+  }
+
+  /**
+   * Get the OpenAPI specification of the Pinax API (`/openapi`)
+   */
+  async getOpenAPISpec() {
+    const { data, error } = await this.client.GET('/openapi', {});
 
     return handleResponse(data, error);
   }
