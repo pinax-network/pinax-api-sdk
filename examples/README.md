@@ -23,4 +23,4 @@ bun run examples/<example-name>.ts
 ## Notes
 
 - EVM examples (Ethereum, Base, Arbitrum, etc.) are fully supported
-- Tron and Solana examples demonstrate the intended API patterns for TVM and SVM networks
+- The Solana example demonstrates the API patterns for SVM networks

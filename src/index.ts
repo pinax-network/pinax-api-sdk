@@ -60,10 +60,6 @@ export type SvmNativeTokensResponse = NonNullable<Awaited<ReturnType<InstanceTyp
 export type SvmBalancesResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['svm']['tokens']['getBalances']>>>;
 export type SvmHoldersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['svm']['tokens']['getHolders']>>>;
 export type SvmPoolsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['svm']['dexs']['getPools']>>>;
-export type TvmTransfersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['tvm']['tokens']['getTransfers']>>>;
-export type TvmSwapsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['tvm']['dexs']['getSwaps']>>>;
-export type TvmTokensResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['tvm']['tokens']['getTokenMetadata']>>>;
-export type TvmPoolsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['tvm']['dexs']['getPools']>>>;
 export type PolymarketMarketsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['polymarket']['getMarkets']>>>;
 export type PolymarketUsersResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['polymarket']['getUsers']>>>;
 export type HyperliquidMarketsResponse = NonNullable<Awaited<ReturnType<InstanceType<typeof PinaxAPI>['hyperliquid']['getMarkets']>>>;
@@ -94,10 +90,7 @@ export type EvmNetwork =
 
 export type SvmNetwork = 'solana';
 
-export type TvmNetwork = 'tron';
-
 export type EvmDexProtocol = 'uniswap_v1' | 'uniswap_v2' | 'uniswap_v3' | 'uniswap_v4' | 'curvefi' | 'balancer' | 'bancor' | 'cow' | 'aerodrome' | 'dodo' | 'woofi' | 'traderjoe' | 'kyber_elastic';
-export type TvmDexProtocol = 'uniswap_v1' | 'uniswap_v2' | 'uniswap_v3' | 'uniswap_v4' | 'sunpump';
 export type SvmDexProtocol =
   | 'jupiter_v4'
   | 'jupiter_v6'
@@ -132,7 +125,7 @@ export type SvmDexProgramId =
   | '6EF8rrecthR5Dkzon8Nwu78hRvfCKubJ14M5uBEwF6P';
 
 /**
- * @deprecated Use `EvmDexProtocol` or `TvmDexProtocol` instead.
+ * @deprecated Use `EvmDexProtocol` instead.
  */
 export type DexProtocol = EvmDexProtocol;
 
@@ -189,26 +182,6 @@ export const SVMChains = {
   /** Solana */
   Solana: 'solana',
 } as const satisfies Record<string, SvmNetwork>;
-
-/**
- * TVM (Tron Virtual Machine) chain identifiers for network parameter.
- * Use these constants instead of raw strings for type safety.
- *
- * @example
- * ```typescript
- * import { PinaxAPI, TVMChains } from "@pinax/api";
- *
- * const client = new PinaxAPI();
- * const transfers = await client.tvm.tokens.getTransfers({
- *   network: TVMChains.Tron,
- *   limit: 10,
- * });
- * ```
- */
-export const TVMChains = {
-  /** Tron */
-  Tron: 'tron',
-} as const satisfies Record<string, TvmNetwork>;
 
 /**
  * Configuration options for the Pinax SDK client
@@ -1309,200 +1282,6 @@ class HyperliquidApi {
 }
 
 /**
- * TVM Tokens API - Token operations on Tron Virtual Machine networks
- */
-class TvmTokens {
-  constructor(private client: ReturnType<typeof createAPIClient>) { }
-
-  /**
-   * Get TRC-20 token transfers
-   */
-  async getTransfers(params: {
-    network: TvmNetwork;
-    transaction_id?: string | string[];
-    contract?: string | string[];
-    from_address?: string | string[];
-    to_address?: string | string[];
-    start_time?: string;
-    end_time?: string;
-    start_block?: number;
-    end_block?: number;
-    page?: number;
-    limit?: number;
-  }) {
-    const { data, error } = await this.client.GET('/v1/tvm/transfers', {
-      params: { query: params },
-    });
-
-    return handleResponse(data, error);
-  }
-
-  /**
-   * Get native TRX transfers
-   */
-  async getNativeTransfers(params: {
-    network: TvmNetwork;
-    transaction_id?: string | string[];
-    from_address?: string | string[];
-    to_address?: string | string[];
-    start_time?: string;
-    end_time?: string;
-    start_block?: number;
-    end_block?: number;
-    page?: number;
-    limit?: number;
-  }) {
-    const { data, error } = await this.client.GET('/v1/tvm/transfers/native', {
-      params: { query: params },
-    });
-
-    return handleResponse(data, error);
-  }
-
-  /**
-   * Get token metadata
-   */
-  async getTokenMetadata(params: {
-    network: TvmNetwork;
-    contract: string | string[];
-  }) {
-    const { data, error } = await this.client.GET('/v1/tvm/tokens', {
-      params: { query: params },
-    });
-
-    return handleResponse(data, error);
-  }
-
-  /**
-   * Get native TRX token metadata
-   */
-  async getNativeTokenMetadata(params: {
-    network: TvmNetwork;
-  }) {
-    const { data, error } = await this.client.GET('/v1/tvm/tokens/native', {
-      params: { query: params },
-    });
-
-    return handleResponse(data, error);
-  }
-}
-
-/**
- * TVM DEXs API - Decentralized exchange operations on Tron Virtual Machine networks
- */
-class TvmDexs {
-  constructor(private client: ReturnType<typeof createAPIClient>) { }
-
-  /**
-   * Get DEX swap transactions
-   */
-  async getSwaps(params: {
-    network: TvmNetwork;
-    transaction_id?: string | string[];
-    factory?: string | string[];
-    pool?: string | string[];
-    transaction_from?: string | string[];
-    sender?: string | string[];
-    recipient?: string | string[];
-    input_contract?: string | string[];
-    output_contract?: string | string[];
-    protocol?: TvmDexProtocol;
-    start_time?: string;
-    end_time?: string;
-    start_block?: number;
-    end_block?: number;
-    page?: number;
-    limit?: number;
-  }) {
-    const { data, error } = await this.client.GET('/v1/tvm/swaps', {
-      params: { query: params },
-    });
-
-    return handleResponse(data, error);
-  }
-
-  /**
-   * Get supported DEXs
-   */
-  async getDexes(params: {
-    network: TvmNetwork;
-    page?: number;
-    limit?: number;
-  }) {
-    const { data, error } = await this.client.GET('/v1/tvm/dexes', {
-      params: { query: params },
-    });
-
-    return handleResponse(data, error);
-  }
-
-  /**
-   * Get DEX liquidity pools
-   */
-  async getPools(params: {
-    network: TvmNetwork;
-    factory?: string | string[];
-    pool?: string | string[];
-    input_token?: string | string[];
-    output_token?: string | string[];
-    protocol?: TvmDexProtocol;
-    page?: number;
-    limit?: number;
-  }) {
-    const { data, error } = await this.client.GET('/v1/tvm/pools', {
-      params: { query: params },
-    });
-
-    return handleResponse(data, error);
-  }
-
-  /**
-   * Get OHLCV price data for liquidity pools
-   */
-  async getPoolOHLC(params: {
-    network: TvmNetwork;
-    pool: string;
-    interval?: '1h' | '4h' | '1d' | '1w';
-    start_time?: string;
-    end_time?: string;
-    page?: number;
-    limit?: number;
-  }) {
-    const { data, error } = await this.client.GET('/v1/tvm/pools/ohlc', {
-      params: { query: params },
-    });
-
-    return handleResponse(data, error);
-  }
-}
-
-/**
- * TVM NFTs API - NFT operations on Tron Virtual Machine networks
- *
- * @remarks
- * This class is a placeholder for future NFT functionality on TVM networks (Tron).
- * Methods will be added when the Pinax API adds support for Tron NFT operations.
- */
-class TvmNfts {
-  constructor(private client: ReturnType<typeof createAPIClient>) { }
-}
-
-/**
- * TVM API - Operations on TVM (Tron Virtual Machine) networks
- */
-class TvmApi {
-  public readonly tokens: TvmTokens;
-  public readonly dexs: TvmDexs;
-  public readonly nfts: TvmNfts;
-
-  constructor(client: ReturnType<typeof createAPIClient>) {
-    this.tokens = new TvmTokens(client);
-    this.dexs = new TvmDexs(client);
-    this.nfts = new TvmNfts(client);
-  }
-}
-
-/**
  * High-level wrapper for common Pinax API operations
  *
  * @example
@@ -1538,11 +1317,6 @@ export class PinaxAPI {
   public readonly svm: SvmApi;
 
   /**
-   * TVM (Tron Virtual Machine) API - Tron
-   */
-  public readonly tvm: TvmApi;
-
-  /**
    * Polymarket analytics API
    */
   public readonly polymarket: PolymarketApi;
@@ -1556,7 +1330,6 @@ export class PinaxAPI {
     this.client = createAPIClient(options);
     this.evm = new EvmApi(this.client);
     this.svm = new SvmApi(this.client);
-    this.tvm = new TvmApi(this.client);
     this.polymarket = new PolymarketApi(this.client);
     this.hyperliquid = new HyperliquidApi(this.client);
   }

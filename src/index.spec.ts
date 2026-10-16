@@ -12,7 +12,6 @@ import {
   DEFAULT_BASE_URL,
   EVMChains,
   SVMChains,
-  TVMChains,
 } from './index';
 
 describe('createAPIClient', () => {
@@ -42,9 +41,13 @@ describe('PinaxAPI', () => {
       expect(client).toBeInstanceOf(PinaxAPI);
       expect(client.evm).toBeDefined();
       expect(client.svm).toBeDefined();
-      expect(client.tvm).toBeDefined();
       expect(client.polymarket).toBeDefined();
       expect(client.hyperliquid).toBeDefined();
+    });
+
+    it('should not expose the removed TVM API', () => {
+      const client = new PinaxAPI();
+      expect('tvm' in client).toBe(false);
     });
 
     it('should create a PinaxAPI instance with custom options', () => {
@@ -129,34 +132,6 @@ describe('PinaxAPI', () => {
 
     it('should expose svm.nfts API (placeholder)', () => {
       expect(client.svm.nfts).toBeDefined();
-    });
-  });
-
-  describe('TVM API structure', () => {
-    let client: PinaxAPI;
-
-    beforeEach(() => {
-      client = new PinaxAPI();
-    });
-
-    it('should expose tvm.tokens API', () => {
-      expect(client.tvm.tokens).toBeDefined();
-      expect(typeof client.tvm.tokens.getTransfers).toBe('function');
-      expect(typeof client.tvm.tokens.getNativeTransfers).toBe('function');
-      expect(typeof client.tvm.tokens.getTokenMetadata).toBe('function');
-      expect(typeof client.tvm.tokens.getNativeTokenMetadata).toBe('function');
-    });
-
-    it('should expose tvm.dexs API', () => {
-      expect(client.tvm.dexs).toBeDefined();
-      expect(typeof client.tvm.dexs.getSwaps).toBe('function');
-      expect(typeof client.tvm.dexs.getDexes).toBe('function');
-      expect(typeof client.tvm.dexs.getPools).toBe('function');
-      expect(typeof client.tvm.dexs.getPoolOHLC).toBe('function');
-    });
-
-    it('should expose tvm.nfts API (placeholder)', () => {
-      expect(client.tvm.nfts).toBeDefined();
     });
   });
 
@@ -265,16 +240,6 @@ describe('Constants', () => {
 
     it('should have Solana chain value', () => {
       expect(SVMChains.Solana).toBe('solana');
-    });
-  });
-
-  describe('TVMChains', () => {
-    it('should export TVMChains constant', () => {
-      expect(TVMChains).toBeDefined();
-    });
-
-    it('should have Tron chain value', () => {
-      expect(TVMChains.Tron).toBe('tron');
     });
   });
 });
@@ -389,32 +354,6 @@ describe('API methods with mocked fetch', () => {
     expect(capturedRequest!.url).toContain('amm_pool=pool-address');
   });
 
-  it('should call the correct endpoint for TVM transfers', async () => {
-    const client = new PinaxAPI({ apiToken: 'test-token' });
-
-    await client.tvm.tokens.getTransfers({
-      network: 'tron',
-      limit: 10,
-    });
-
-    expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.url).toContain('/v1/tvm/transfers');
-    expect(capturedRequest!.url).toContain('network=tron');
-  });
-
-  it('should include protocol filter for TVM pools', async () => {
-    const client = new PinaxAPI({ apiToken: 'test-token' });
-
-    await client.tvm.dexs.getPools({
-      network: 'tron',
-      protocol: 'sunpump',
-    });
-
-    expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.url).toContain('/v1/tvm/pools');
-    expect(capturedRequest!.url).toContain('protocol=sunpump');
-  });
-
   it('should work with EVMChains.Ethereum constant', async () => {
     const client = new PinaxAPI({ apiToken: 'test-token' });
 
@@ -439,19 +378,6 @@ describe('API methods with mocked fetch', () => {
     expect(capturedRequest).not.toBeNull();
     expect(capturedRequest!.url).toContain('/v1/svm/transfers');
     expect(capturedRequest!.url).toContain('network=solana');
-  });
-
-  it('should work with TVMChains.Tron constant', async () => {
-    const client = new PinaxAPI({ apiToken: 'test-token' });
-
-    await client.tvm.tokens.getTransfers({
-      network: TVMChains.Tron,
-      limit: 10,
-    });
-
-    expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.url).toContain('/v1/tvm/transfers');
-    expect(capturedRequest!.url).toContain('network=tron');
   });
 
   it('should include authorization header when API token is provided', async () => {
@@ -936,95 +862,6 @@ describe('API methods with mocked fetch', () => {
     expect(capturedRequest).not.toBeNull();
     expect(capturedRequest!.url).toContain('/v1/svm/pools/ohlc');
     expect(capturedRequest!.url).toContain('amm_pool=pool-address');
-  });
-
-  // --- TVM Tokens: uncovered methods ---
-
-  it('should call the correct endpoint for TVM native transfers', async () => {
-    const client = new PinaxAPI({ apiToken: 'test-token' });
-
-    await client.tvm.tokens.getNativeTransfers({
-      network: 'tron',
-      limit: 10,
-    });
-
-    expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.url).toContain('/v1/tvm/transfers/native');
-  });
-
-  it('should call the correct endpoint for TVM token metadata', async () => {
-    const client = new PinaxAPI({ apiToken: 'test-token' });
-
-    await client.tvm.tokens.getTokenMetadata({
-      network: 'tron',
-      contract: 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t',
-    });
-
-    expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.url).toContain('/v1/tvm/tokens');
-    expect(capturedRequest!.url).toContain('contract=');
-  });
-
-  it('should support array of contracts for TVM token metadata', async () => {
-    const client = new PinaxAPI({ apiToken: 'test-token' });
-
-    await client.tvm.tokens.getTokenMetadata({
-      network: 'tron',
-      contract: ['TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t', 'TNUC9Qb1rRpS5CbWLmNMxXBjyFoydXjWFR'],
-    });
-
-    expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.url).toContain('/v1/tvm/tokens');
-  });
-
-  it('should call the correct endpoint for TVM native token metadata', async () => {
-    const client = new PinaxAPI({ apiToken: 'test-token' });
-
-    await client.tvm.tokens.getNativeTokenMetadata({
-      network: 'tron',
-    });
-
-    expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.url).toContain('/v1/tvm/tokens/native');
-  });
-
-  // --- TVM DEXs: uncovered methods ---
-
-  it('should call the correct endpoint for TVM swaps', async () => {
-    const client = new PinaxAPI({ apiToken: 'test-token' });
-
-    await client.tvm.dexs.getSwaps({
-      network: 'tron',
-      limit: 10,
-    });
-
-    expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.url).toContain('/v1/tvm/swaps');
-  });
-
-  it('should call the correct endpoint for TVM dexes', async () => {
-    const client = new PinaxAPI({ apiToken: 'test-token' });
-
-    await client.tvm.dexs.getDexes({
-      network: 'tron',
-    });
-
-    expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.url).toContain('/v1/tvm/dexes');
-  });
-
-  it('should call the correct endpoint for TVM pool OHLC', async () => {
-    const client = new PinaxAPI({ apiToken: 'test-token' });
-
-    await client.tvm.dexs.getPoolOHLC({
-      network: 'tron',
-      pool: 'pool-address',
-      interval: '1h',
-    });
-
-    expect(capturedRequest).not.toBeNull();
-    expect(capturedRequest!.url).toContain('/v1/tvm/pools/ohlc');
-    expect(capturedRequest!.url).toContain('pool=pool-address');
   });
 
   // --- Polymarket: all methods ---

@@ -1,16 +1,16 @@
 /**
- * Tron Transfers Example - USDT Transfers
+ * Auto-pagination Example - USDT Transfers
  *
- * This example retrieves USDT (TRC-20) transfers on the Tron network.
- * USDT Contract on Tron: TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t
+ * This example pages through USDT (ERC-20) transfers on Ethereum mainnet.
+ * USDT Contract on Ethereum: 0xdac17f958d2ee523a2206206994597c13d831ec7
  *
  * @see https://docs.pinax.network
  */
 
 import { PinaxAPI } from '@pinax/api';
 
-// USDT Token Contract Address on Tron Network
-const TRON_USDT_CONTRACT = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
+// USDT Token Contract Address on Ethereum Mainnet
+const ETHEREUM_USDT_CONTRACT = '0xdac17f958d2ee523a2206206994597c13d831ec7';
 
 async function main() {
   // Initialize the client with your bearer token
@@ -18,14 +18,14 @@ async function main() {
     apiToken: process.env.PINAX_API_KEY,
   });
 
-  console.log('Auto-pagination: Fetching USDT transfers on Tron network...\n');
+  console.log('Auto-pagination: Fetching USDT transfers on Ethereum mainnet...\n');
 
   // Get transfers using the high-level client
   let page = 1;
   while (true) {
-    const data = await client.tvm.tokens.getTransfers({
-      network: 'tron',
-      contract: TRON_USDT_CONTRACT,
+    const data = await client.evm.tokens.getTransfers({
+      network: 'mainnet',
+      contract: ETHEREUM_USDT_CONTRACT,
       limit: 10,
       end_time: '2025-11-11',
       page

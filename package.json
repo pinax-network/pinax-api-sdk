@@ -34,7 +34,6 @@
     "evm",
     "ethereum",
     "solana",
-    "tron",
     "sdk"
   ],
   "license": "Apache-2.0",

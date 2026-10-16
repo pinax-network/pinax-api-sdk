@@ -32,10 +32,10 @@ Ensures `src/index.ts` and `src/index.spec.ts` stay aligned with the auto-genera
 5. **Check type aliases** — `components.schemas` may be `never` (all types inline). Do not create type aliases referencing `components['schemas']['...']` if schemas is `never`. Derive response types from method return types instead.
 
 6. **Check network/enum types** — Verify these types match the spec enums:
-   - `EvmNetwork`, `SvmNetwork`, `TvmNetwork`
-   - `EvmDexProtocol`, `TvmDexProtocol`
+   - `EvmNetwork`, `SvmNetwork`
+   - `EvmDexProtocol`, `SvmDexProtocol`
    - `SvmTokenProgramId`, `SvmDexProgramId`
-   - `EVMChains`, `SVMChains`, `TVMChains` constants
+   - `EVMChains`, `SVMChains` constants
 
 7. **Update tests** — Every public method must have at least one test in the `API methods with mocked fetch` describe block that:
    - Calls the method with valid params.

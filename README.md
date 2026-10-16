@@ -9,7 +9,7 @@
 
 The `@pinax/api` provides a type-safe TypeScript client for the [Pinax API](https://docs.pinax.network). Access blockchain data including:
 
-- **Token Transfers** - ERC-20, SPL, TRC-20 and native token transfers
+- **Token Transfers** - ERC-20, SPL and native token transfers
 - **DEX Swaps** - Uniswap, Jupiter, Raydium and other DEX swap events
 - **Token Metadata** - Symbol, name, decimals, supply
 - **Balances** - Real-time token holdings
@@ -25,7 +25,6 @@ The SDK provides typed chain constants for type-safe network selection:
 
 - **EVM Chains**: Ethereum, ArbitrumOne, Unichain, Base, Optimism, Polygon, BNB Chain & Avalanche.
 - **Solana**: Mainnet.
-- **Tron**: Mainnet.
 
 ## Quick Start
 
