@@ -1,6 +1,6 @@
 ---
 name: openapi-sync
-description: Sync the SDK wrapper (index.ts) and tests (index.spec.ts) with the latest OpenAPI spec (openapi.d.ts). Run after `npm run generate` to ensure full alignment, 100% test coverage, and type safety.
+description: Sync the SDK wrapper (index.ts) and tests (index.spec.ts) with the latest OpenAPI spec (openapi.d.ts). Run after `bun run generate` to ensure full alignment, 100% test coverage, and type safety.
 ---
 
 # OpenAPI Sync
@@ -9,14 +9,14 @@ Ensures `src/index.ts` and `src/index.spec.ts` stay aligned with the auto-genera
 
 ## When to Use
 
-- After running `npm run generate` to regenerate `src/openapi.d.ts`
+- After running `bun run generate` to regenerate `src/openapi.d.ts`
 - When adding, removing, or modifying SDK wrapper methods
 - Before any release or PR merge
 - When the build or typecheck fails due to spec drift
 
 ## Steps
 
-1. **Regenerate types** — Run `npm run generate` to update `src/openapi.d.ts`. Never edit this file manually.
+1. **Regenerate types** — Run `bun run generate` to update `src/openapi.d.ts`. Never edit this file manually.
 
 2. **Typecheck** — Run `bun run typecheck`. Fix any type errors in `index.ts`.
 
