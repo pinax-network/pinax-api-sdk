@@ -16,7 +16,7 @@ Ensures `src/index.ts` and `src/index.spec.ts` stay aligned with the auto-genera
 
 ## Steps
 
-1. **Regenerate types** — Run `bun run generate` to update `src/openapi.d.ts`. Never edit this file manually.
+1. **Regenerate types** — Run `bun run generate` to update `src/openapi.d.ts` from the production spec at `https://api.pinax.network/openapi`. Never edit this file manually.
 
 2. **Typecheck** — Run `bun run typecheck`. Fix any type errors in `index.ts`.
 

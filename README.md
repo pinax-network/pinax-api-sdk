@@ -137,12 +137,16 @@ cd pinax-api-sdk
 # Install dependencies
 bun install
 
-# Generate types from OpenAPI spec
+# Generate types from the production OpenAPI spec
 bun run generate
 
 # Build the package
 bun run build
 ```
+
+`bun run generate` writes `src/openapi.d.ts` from the production spec at
+[https://api.pinax.network/openapi](https://api.pinax.network/openapi).
+`bun run build` runs it first, so every build reads the live spec.
 
 ## Related Resources
 
