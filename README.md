@@ -9,7 +9,7 @@
 
 The `@pinax/api` provides a type-safe TypeScript client for the [Pinax API](https://docs.pinax.network). Access blockchain data including:
 
-- **Token Transfers** - ERC-20, SPL, TRC-20 and native token transfers
+- **Token Transfers** - ERC-20, SPL and native token transfers
 - **DEX Swaps** - Uniswap, Jupiter, Raydium and other DEX swap events
 - **Token Metadata** - Symbol, name, decimals, supply
 - **Balances** - Real-time token holdings
@@ -23,9 +23,8 @@ The `@pinax/api` provides a type-safe TypeScript client for the [Pinax API](http
 
 The SDK provides typed chain constants for type-safe network selection:
 
-- **EVM Chains**: Ethereum, ArbitrumOne, Unichain, Base, Optimism, Polygon, BNB Chain & Avalanche.
+- **EVM Chains**: Ethereum, ArbitrumOne, Unichain, Base, Optimism, Polygon, BNB Chain, Avalanche & HyperEVM.
 - **Solana**: Mainnet.
-- **Tron**: Mainnet.
 
 ## Quick Start
 
@@ -138,12 +137,16 @@ cd pinax-api-sdk
 # Install dependencies
 bun install
 
-# Generate types from OpenAPI spec
+# Generate types from the production OpenAPI spec
 bun run generate
 
 # Build the package
 bun run build
 ```
+
+`bun run generate` writes `src/openapi.d.ts` from the production spec at
+[https://api.pinax.network/openapi](https://api.pinax.network/openapi).
+`bun run build` runs it first, so every build reads the live spec.
 
 ## Related Resources
 

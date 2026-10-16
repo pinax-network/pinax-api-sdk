@@ -13,17 +13,14 @@ This folder contains TypeScript examples demonstrating how to use the `@pinax/ap
 
 ## Running Examples
 
-You can run any example using Bun, Node.js with tsx, or any TypeScript runtime:
+You can run any example using Bun, or any TypeScript runtime:
 
 ```bash
 # Using Bun (recommended)
 bun run examples/<example-name>.ts
-
-# Using Node.js with tsx
-npx tsx examples/<example-name>.ts
 ```
 
 ## Notes
 
 - EVM examples (Ethereum, Base, Arbitrum, etc.) are fully supported
-- Tron and Solana examples demonstrate the intended API patterns for TVM and SVM networks
+- The Solana example demonstrates the API patterns for SVM networks

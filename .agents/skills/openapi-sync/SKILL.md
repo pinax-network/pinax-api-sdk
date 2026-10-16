@@ -1,6 +1,6 @@
 ---
 name: openapi-sync
-description: Sync the SDK wrapper (index.ts) and tests (index.spec.ts) with the latest OpenAPI spec (openapi.d.ts). Run after `npm run generate` to ensure full alignment, 100% test coverage, and type safety.
+description: Sync the SDK wrapper (index.ts) and tests (index.spec.ts) with the latest OpenAPI spec (openapi.d.ts). Run after `bun run generate` to ensure full alignment, 100% test coverage, and type safety.
 ---
 
 # OpenAPI Sync
@@ -9,14 +9,14 @@ Ensures `src/index.ts` and `src/index.spec.ts` stay aligned with the auto-genera
 
 ## When to Use
 
-- After running `npm run generate` to regenerate `src/openapi.d.ts`
+- After running `bun run generate` to regenerate `src/openapi.d.ts`
 - When adding, removing, or modifying SDK wrapper methods
 - Before any release or PR merge
 - When the build or typecheck fails due to spec drift
 
 ## Steps
 
-1. **Regenerate types** — Run `npm run generate` to update `src/openapi.d.ts`. Never edit this file manually.
+1. **Regenerate types** — Run `bun run generate` to update `src/openapi.d.ts` from the production spec at `https://api.pinax.network/openapi`. Never edit this file manually.
 
 2. **Typecheck** — Run `bun run typecheck`. Fix any type errors in `index.ts`.
 
@@ -32,10 +32,10 @@ Ensures `src/index.ts` and `src/index.spec.ts` stay aligned with the auto-genera
 5. **Check type aliases** — `components.schemas` may be `never` (all types inline). Do not create type aliases referencing `components['schemas']['...']` if schemas is `never`. Derive response types from method return types instead.
 
 6. **Check network/enum types** — Verify these types match the spec enums:
-   - `EvmNetwork`, `SvmNetwork`, `TvmNetwork`
-   - `EvmDexProtocol`, `TvmDexProtocol`
-   - `SvmTokenProgramId`, `SvmDexProgramId`
-   - `EVMChains`, `SVMChains`, `TVMChains` constants
+   - `EvmNetwork`, `SvmNetwork`
+   - `EvmDexProtocol`, `SvmDexProtocol`
+   - `SvmTokenProgramId` (`SvmDexProgramId` has no spec enum: the IDs are only `@example` values)
+   - `EVMChains`, `SVMChains` constants
 
 7. **Update tests** — Every public method must have at least one test in the `API methods with mocked fetch` describe block that:
    - Calls the method with valid params.
@@ -49,4 +49,5 @@ Ensures `src/index.ts` and `src/index.spec.ts` stay aligned with the auto-genera
 - Tests use a mocked global `fetch` that captures the `Request` object. No real API calls.
 - Test runner is `bun:test`.
 - The SDK uses `openapi-fetch` with `createClient<paths>()`.
-- Wrapper methods call `this.client.GET(path, { params: { query: params } })` and return via `handleResponse(data, error)`.
+- Wrapper methods call `this.client.GET(path, { params: { query: params } })` and return via `handleResponse(data, error)`. Endpoints without parameters pass `{}`, and text endpoints (`/SKILL.md`, `/llms.txt`) add `parseAs: 'text'`.
+- `generate` runs with `--empty-objects-unknown`, so a response typed only as `object` becomes `Record<string, unknown>`, not the unusable `Record<string, never>`.
