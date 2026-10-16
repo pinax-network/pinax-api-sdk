@@ -34,7 +34,7 @@ Ensures `src/index.ts` and `src/index.spec.ts` stay aligned with the auto-genera
 6. **Check network/enum types** — Verify these types match the spec enums:
    - `EvmNetwork`, `SvmNetwork`
    - `EvmDexProtocol`, `SvmDexProtocol`
-   - `SvmTokenProgramId`, `SvmDexProgramId`
+   - `SvmTokenProgramId` (`SvmDexProgramId` has no spec enum: the IDs are only `@example` values)
    - `EVMChains`, `SVMChains` constants
 
 7. **Update tests** — Every public method must have at least one test in the `API methods with mocked fetch` describe block that:
@@ -49,4 +49,5 @@ Ensures `src/index.ts` and `src/index.spec.ts` stay aligned with the auto-genera
 - Tests use a mocked global `fetch` that captures the `Request` object. No real API calls.
 - Test runner is `bun:test`.
 - The SDK uses `openapi-fetch` with `createClient<paths>()`.
-- Wrapper methods call `this.client.GET(path, { params: { query: params } })` and return via `handleResponse(data, error)`.
+- Wrapper methods call `this.client.GET(path, { params: { query: params } })` and return via `handleResponse(data, error)`. Endpoints without parameters pass `{}`, and text endpoints (`/SKILL.md`, `/llms.txt`) add `parseAs: 'text'`.
+- `generate` runs with `--empty-objects-unknown`, so a response typed only as `object` becomes `Record<string, unknown>`, not the unusable `Record<string, never>`.
